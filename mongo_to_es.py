@@ -82,7 +82,11 @@ def gendata(df):
 
 @timer
 def write_to_es(df):
-    helpers.bulk(es, gendata(df))
+    # helpers.bulk(es, gendata(df))
+    # Parallel version of the bulk helper run in multiple threads at once
+    for ok, response in helpers.parallel_bulk(es, gendata(df), thread_count=20):
+        if not ok:
+            print(response)
 
 
 if __name__ == "__main__":
