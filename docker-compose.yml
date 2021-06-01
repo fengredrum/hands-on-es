@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   python-testbed:
-    image: python:3.6-slim
+    image: oblivion208/hands-on-es:0.1
     tty: true
     ipc: "host"
     working_dir: /app
@@ -18,7 +18,7 @@ services:
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms32g -Xmx32g"
     volumes:
       - ./esdata:/usr/share/elasticsearch/data
 
